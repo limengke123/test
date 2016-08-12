@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+<style type="text/css">
+*{
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+body { padding: 20px;}
+#container{
+	width: 600px;
+	height: 400px;
+	border:1px solid #ccc;
+	overflow: hidden;
+	position: relative;
+	top:60px;
+	left: 100px;
+}
+#list{
+	width:4200px;
+	height:400px;
+	position:absolute;
+	z-index: 1;
+	left: -600px;
+}
+#list img{
+	float: left;
+}
+#buttons{
+	position: absolute;
+	z-index: 2;
+	height: 10px;
+	width: 100px;
+	bottom:25px;
+	left: 250px;
+}
+#buttons span{
+	cursor: pointer;
+	border: 1px solid #fff;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #333;
+	margin-right: 5px;
+	float: left;
+}
+#buttons .on{
+	background-color: #37d;
+}
+.arrow{
+	font-size: 40px;
+	color:#fff;
+	z-index: 2;
+	position: absolute;
+	height: 40px;
+	width: 40px;
+	top:180px;
+	background-color: rgba(0,0,0,0.3);
+	text-align: center;
+	line-height: 40px;
+	font-weight: bold;
+	display: none;
+}
+#prev{
+	left: 20px;
+}
+#next{
+	right: 20px;
+}
+#container:hover .arrow{
+	display: block;
+}
+.arrow:hover{
+	background-color: rgba(0,0,0,0.7)
+}
+#test{
+	width: 60px;
+	height: 30px;
+}
+/*.te{width: 4200px;}
+.te img{
+	float: left;
+}*/
+</style>
+</head>
+<body>
+	<div id="container">
+	  <div id="list" >
+		<img src="img/5.jpg" alt="1"/>
+        <img src="img/1.jpg" alt="1"/>
+        <img src="img/2.jpg" alt="2"/>
+        <img src="img/3.jpg" alt="3"/>
+        <img src="img/4.jpg" alt="4"/>
+        <img src="img/5.jpg" alt="5"/>
+        <img src="img/1.jpg" alt="5"/>
+	  </div>  
+	  <div id="buttons">
+	    <span index="1" class="on"></span>
+        <span index="2"></span>
+        <span index="3"></span>
+        <span index="4"></span>
+        <span index="5"></span>
+	  </div>
+	  	<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+    	<a href="javascript:;" id="next" class="arrow">&gt;</a>
+	</div>
+	<input type="button" name="" id="test">
+</body>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+// window.onload = function(){
+// 	var container = document.getElementById('container'),
+// 		list = document.getElementById('list'),
+// 		button = document.getElementById('buttons'),
+// 		buttons = button.getElementsByTagName('span'),
+// 		prev = document.getElementById('prev'),
+// 		next = document.getElementById('next'),
+// 		animated = false,
+// 		len = 5,
+// 		index = 1;
+
+
+	// function animate(offset){
+	// 	/*没加判断*/
+	// 	animated=true;
+	// 	var time = 300,
+	// 		interval = 10,
+	// 		speed = offset/(time/interval),
+	// 		left = parseInt(list.style.left)+offset;
+
+	// 	 var go =function(){
+	// 	 	if((left>parseInt(list.style.left) && speed>0) || (left<parseInt(list.style.left) && speed<0)){
+	// 	 		list.style.left = parseInt(list.style.left) + speed +"px";
+	// 	 		setTimeout(go,interval);
+	// 	 	}else{
+	// 	 		if(left>-600){
+	// 	 			list.style.left = (-600*len)+'px';
+	// 	 		}
+	// 	 		if(left<-3000){
+	// 	 			list.style.left = -600;
+	// 	 		}
+	// 	 	}
+	// 	 }
+	// 	go();
+	// } /*animate函数结束*/
+							// function animate (offset) {
+							//                 if (offset == 0) {
+							//                     return;
+							//                 }
+							//                 animated = true;
+							//                 var time = 300;
+							//                 var inteval = 10;
+							//                 var speed = offset/(time/inteval);
+							//                 var left = parseInt(list.style.left) + offset;
+
+							//                 var go = function (){
+							//                     if ( (speed > 0 && parseInt(list.style.left) < left) || (speed < 0 && parseInt(list.style.left) > left)) {
+							//                         list.style.left = parseInt(list.style.left) + speed + 'px';
+							//                         setTimeout(go, inteval);
+							//                     }
+							//                     else {
+							//                         list.style.left = left + 'px';
+							//                         if(left>-200){
+							//                             list.style.left = -600 * len + 'px';
+							//                         }
+							//                         if(left<(-600 * len)) {
+							//                             list.style.left = '-600px';
+							//                         }
+							//                         animated = false;
+							//                     }
+							//                 }
+							//                 go();
+							//             }
+
+							// 	function showbutton(){
+							// 		for(var i=0;i<buttons.length;i++){
+							// 			buttons[i].className = "";
+							// 		}
+							// 		buttons[index-1].className = 'on';
+							// 	}
+
+							// 	prev.onclick = function(){
+							// 		animate(600);
+							// 		index-=1;
+							// 		if(index<1){
+							// 			index=5;
+							// 		}
+							// 		showbutton();
+							// 	}
+
+							// 	next.onclick = function(){
+							// 		animate(-600);
+							// 		index+=1;
+							// 		if(index>5){
+							// 			index=1;
+							// 		}
+							// 		showbutton();
+							// 	}
+
+							// }
+
+</script>
+</html>
